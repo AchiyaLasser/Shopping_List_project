@@ -7,10 +7,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -85,8 +91,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View v) {
 
         if(v == fab){
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
-                    new AddNoteFragment()).commit();
+            android.app.AlertDialog.Builder noteDialog = new AlertDialog.Builder(MainActivity.this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            EditText etDialog = new EditText(MainActivity.this);
+            noteDialog.setView(etDialog);
+            etDialog.setLayoutParams(params);
+            etDialog.setBackground(null);
+            etDialog.setHint("Write your note");
+            noteDialog.setCancelable(true);
+            noteDialog.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            noteDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            noteDialog.show();
         }
 
     }
