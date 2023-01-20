@@ -37,13 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword("achiyalasser9@gmail.com", "12345")
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                    }
-                });
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -116,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     FirebaseDatabase database = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/");
-                    DatabaseReference myRef = database.getReference("notes/" + FirebaseAuth.getInstance().getUid());
+                    DatabaseReference myRef = database.getReference("notes").push();
 
                     myRef.setValue(etDialog.getText().toString());
                 }
