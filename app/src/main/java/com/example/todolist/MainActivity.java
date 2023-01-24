@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onClick(View v) {
-
+/*
         if(v == fab){
             android.app.AlertDialog.Builder noteDialog = new AlertDialog.Builder(MainActivity.this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -122,6 +122,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
             noteDialog.show();
         }
-
+*/
     }
 }

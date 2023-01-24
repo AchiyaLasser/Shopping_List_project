@@ -33,7 +33,7 @@
                 android:id="@+id/fab"
                 android:src="@drawable/ic_add"
                 android:backgroundTint="#2E8BBD"
-                android:layout_gravity="bottom|end"
+                android:layout_gravity="bottom|start"
                 app:maxImageSize="30dp"
                 android:layout_margin="10dp"
                 />
