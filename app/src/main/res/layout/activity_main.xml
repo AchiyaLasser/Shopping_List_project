@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linear_layout"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_add_note"
         android:src="@drawable/ic_add"
+        app:maxImageSize="30dp"
         android:backgroundTint="#2E8BBD"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp" />
