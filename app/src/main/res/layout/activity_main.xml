@@ -13,17 +13,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_view_notes"/>
+        android:id="@+id/rv_shopping_list"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_add_note"
-        android:src="@drawable/ic_add"
-        app:maxImageSize="30dp"
-        android:backgroundTint="#2E8BBD"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp" />
+    <TextView
+        android:id="@+id/empty_state"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:text="Looks like there are no products in your shopping list yet.\n Start adding items to get your shopping spree going!"
+        android:layout_gravity="center"
+        android:visibility="visible" />
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
