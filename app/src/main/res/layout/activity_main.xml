@@ -15,16 +15,14 @@
         android:layout_height="match_parent"
         android:id="@+id/rv_shopping_list"/>
 
-    <TextView
-        android:id="@+id/empty_state"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:textSize="30dp"
-        android:gravity="center"
-        android:text="Looks like there are no products in your shopping list yet.\n Start adding items to get your shopping spree going!"
-        android:layout_gravity="center"
-        android:visibility="visible" />
-
-
+        <TextView
+            android:id="@+id/empty_state"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Looks like there are no products in your shopping list yet.\n Start adding items to get your shopping spree going!"
+            android:textSize="30dp"
+            android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
