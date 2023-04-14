@@ -44,7 +44,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         RecyclerViewItem currentNote = shoppingList.get(position);
         holder.textView.setText(currentNote.getText());
         holder.checkBox.setChecked(currentNote.isSelected());
-        holder.etAmount.setText(currentNote.getAmountOfProduct() + "");
+        holder.tvAmount.setText(currentNote.getAmountOfProduct() + "");
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         TextView textView;
         CheckBox checkBox;
         Button btnPlus, btnMinus;
-        EditText etAmount;
+        TextView tvAmount;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -74,7 +74,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             btnMinus = itemView.findViewById(R.id.btn_minus);
             btnPlus.setOnClickListener(this);
             btnMinus.setOnClickListener(this);
-            etAmount = itemView.findViewById(R.id.et_amount);
+            tvAmount = itemView.findViewById(R.id.tv_amount);
             checkBox.setOnClickListener(this);
         }
 
@@ -85,8 +85,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             else if(v == btnPlus){
                 btnMinus.setEnabled(true);
                 RecyclerViewItem item = shoppingList.get(getAdapterPosition());
-                int amount = Integer.parseInt(etAmount.getText().toString()) + 1;
-                etAmount.setText(amount + "");
+                int amount = Integer.parseInt(tvAmount.getText().toString()) + 1;
+                tvAmount.setText(amount + "");
                 DatabaseReference myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/").getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
                 myRef.child("amountOfProduct").setValue(amount);
                 if(amount == 999)
@@ -95,8 +95,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             else if(v == btnMinus) {
                 btnPlus.setEnabled(true);
                 RecyclerViewItem item = shoppingList.get(getAdapterPosition());
-                int amount = Integer.parseInt(etAmount.getText().toString()) - 1;
-                etAmount.setText(amount + "");
+                int amount = Integer.parseInt(tvAmount.getText().toString()) - 1;
+                tvAmount.setText(amount + "");
                 DatabaseReference myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/").getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
                 myRef.child("amountOfProduct").setValue(amount);
                 if(amount == 1)
