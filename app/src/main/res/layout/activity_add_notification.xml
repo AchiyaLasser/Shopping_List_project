@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".AddNotificationActivity">
+
+    <EditText
+        android:id="@+id/et_notification_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="title"
+        android:layout_marginTop="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_notification_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="message"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_notification_title"
+        app:layout_constraintStart_toStartOf="@+id/et_notification_title"
+        app:layout_constraintTop_toBottomOf="@+id/et_notification_title" />
+
+    <Button
+        android:id="@+id/btn_Channel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="channel"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_notification_message"
+        app:layout_constraintStart_toStartOf="@+id/et_notification_message"
+        app:layout_constraintTop_toBottomOf="@+id/et_notification_message" />
+</androidx.constraintlayout.widget.ConstraintLayout>

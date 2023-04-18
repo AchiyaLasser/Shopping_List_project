@@ -9,6 +9,11 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/menu_notification"
+        android:title="Add Notification"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/menu_delete"
         android:title="Delete checked products"
         app:showAsAction="never"/>

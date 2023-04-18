@@ -174,6 +174,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     });
             checkingDialog.show();
         }
+        else if(id == R.id.menu_notification){
+            startActivity(new Intent(MainActivity.this, AddNotificationActivity.class));
+        }
         return true;
     }
 
