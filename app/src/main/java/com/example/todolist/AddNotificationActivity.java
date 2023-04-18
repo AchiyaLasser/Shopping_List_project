@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 public class AddNotificationActivity extends AppCompatActivity {
 
-    Button btnChannel1;
+    Button btnChannel1;//rrter
     EditText etTitle, etMessage;
     NotificationHelper mNotificationHelper;
 
