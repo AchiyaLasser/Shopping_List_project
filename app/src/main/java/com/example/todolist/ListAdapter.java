@@ -1,13 +1,17 @@
 package com.example.todolist;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -76,6 +80,60 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             btnMinus.setOnClickListener(this);
             tvAmount = itemView.findViewById(R.id.tv_amount);
             checkBox.setOnClickListener(this);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Do yo want to delete product or change the product's name?")
+                            .setCancelable(true)
+                            .setPositiveButton("Change name", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    AlertDialog.Builder changeNameDialog = new AlertDialog.Builder(context);
+                                    EditText etDialog = new EditText(context);
+                                    changeNameDialog.setView(etDialog);
+                                    etDialog.setHint("new name of product");
+                                    etDialog.setBackground(null);
+                                    changeNameDialog.setCancelable(true);
+                                    changeNameDialog.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            String nameOfProduct = etDialog.getText().toString();
+                                            if(!nameOfProduct.isEmpty()) {
+                                                RecyclerViewItem item = shoppingList.get(getAdapterPosition());
+                                                DatabaseReference myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/").getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
+                                                myRef.child("text").setValue(nameOfProduct);
+                                            }
+                                            else
+                                                Toast.makeText(context, "write the name of the product", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    changeNameDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    });
+                                    changeNameDialog.show();
+
+                                }
+                            })
+                            .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    RecyclerViewItem item = shoppingList.get(getAdapterPosition());
+                                    DatabaseReference myRef = FirebaseDatabase
+                                            .getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                                            .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
+                                    myRef.removeValue();
+                                }
+                            })
+                            .show();
+                    return true;
+                }
+            });
+
         }
 
         @Override
