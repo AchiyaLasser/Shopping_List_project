@@ -33,42 +33,48 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onStart() {
+    public void onStart() { // when enter to LoginActivity check if there a user connected
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null)
+        if (currentUser != null)
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     @Override
     public void onClick(View v) {
-        if(v == btnLogIn){
+        if (v == btnLogIn) {
             EditText etEmail = findViewById(R.id.et_email);
             EditText etPassword = findViewById(R.id.et_password);
-            mAuth.signInWithEmailAndPassword(etEmail.getText().toString(), etPassword.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful())
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            else
-                                Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
-                        }
-                    });
-        }
-        else if(v == btnRegister){
+            if (etEmail.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty())
+                Toast.makeText(this, "please put username and password", Toast.LENGTH_SHORT).show();
+            else {
+                mAuth.signInWithEmailAndPassword(etEmail.getText().toString(), etPassword.getText().toString())
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful())
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                else
+                                    Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
+        } else if (v == btnRegister) {
             EditText etEmail = findViewById(R.id.et_email);
             EditText etPassword = findViewById(R.id.et_password);
-            mAuth.createUserWithEmailAndPassword(etEmail.getText().toString(), etPassword.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful())
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            else
-                                Toast.makeText(LoginActivity.this, "Register failed", Toast.LENGTH_LONG).show();
-                        }
-                    });
+            if (etEmail.getText().equals("") || etPassword.getText().equals("")) {
+                mAuth.createUserWithEmailAndPassword(etEmail.getText().toString(), etPassword.getText().toString())
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful())
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                else
+                                    Toast.makeText(LoginActivity.this, "Register failed", Toast.LENGTH_LONG).show();
+                            }
+                        });
+            } else
+                Toast.makeText(this, "please put username and password", Toast.LENGTH_SHORT).show();
         }
     }
 }

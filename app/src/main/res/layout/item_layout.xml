@@ -37,6 +37,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_weight="1"
+            android:enabled="false"
             android:text="-"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"

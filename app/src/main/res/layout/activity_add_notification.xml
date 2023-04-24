@@ -7,33 +7,77 @@
     android:padding="16dp"
     tools:context=".AddNotificationActivity">
 
-    <EditText
-        android:id="@+id/et_notification_title"
+    <TextView
+        android:id="@+id/tv_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="title"
-        android:layout_marginTop="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et_notification_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="message"
+        android:text="Date: "
+        android:textSize="30sp"
         android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_notification_title"
-        app:layout_constraintStart_toStartOf="@+id/et_notification_title"
-        app:layout_constraintTop_toBottomOf="@+id/et_notification_title" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="176dp" />
 
     <Button
-        android:id="@+id/btn_Channel"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_date_picker"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="channel"
+        android:text="set date"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/round_button"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/tv_date"
+        app:layout_constraintStart_toStartOf="@+id/tv_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+
+    <Button
+        android:id="@+id/btn_open_time_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:enabled="false"
+        android:text="set time"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_date_picker"
+        app:layout_constraintStart_toStartOf="@+id/btn_date_picker"
+        app:layout_constraintTop_toBottomOf="@+id/btn_date_picker" />
+
+    <TextView
+        android:id="@+id/tv_set_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alarm"
+        android:gravity="center"
+        android:textSize="30sp"
         android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_notification_message"
-        app:layout_constraintStart_toStartOf="@+id/et_notification_message"
-        app:layout_constraintTop_toBottomOf="@+id/et_notification_message" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_open_time_picker"
+        app:layout_constraintStart_toStartOf="@+id/btn_open_time_picker"
+        app:layout_constraintTop_toBottomOf="@+id/btn_open_time_picker" />
+
+    <Button
+        android:id="@+id/btn_set_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set alarm"
+        android:background="@drawable/round_button"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="@+id/tv_set_notification"
+        app:layout_constraintStart_toStartOf="@+id/tv_set_notification"
+        app:layout_constraintTop_toBottomOf="@+id/tv_set_notification" />
+
+    <Button
+        android:id="@+id/btn_cancel_alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:enabled="false"
+        android:text="Cancel alarm"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_set_notification"
+        app:layout_constraintStart_toStartOf="@+id/btn_set_notification"
+        app:layout_constraintTop_toBottomOf="@+id/btn_set_notification" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
