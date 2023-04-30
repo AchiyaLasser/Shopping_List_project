@@ -26,12 +26,9 @@ public class NotificationHelper extends ContextWrapper {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void createChannel() {
-        NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
-        channel.enableLights(true);
+        NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_HIGH);
         channel.enableVibration(true);
-        channel.setLightColor(R.color.teal_200);
-        channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-
+        channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         getManager().createNotificationChannel(channel);
     }
 
