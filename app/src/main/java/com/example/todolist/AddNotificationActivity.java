@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,6 +37,8 @@ public class AddNotificationActivity extends AppCompatActivity implements TimePi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_notification);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         sharedPreferences = getSharedPreferences("SharedPrefs", MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -86,6 +89,19 @@ public class AddNotificationActivity extends AppCompatActivity implements TimePi
         if (btnCancelAlarm.isEnabled())
             tvDate.setText(sharedPreferences.getString("tvDate", "Date: "));
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            onBackPressed();  // This will navigate back to the previous activity
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onClick(View v) {
