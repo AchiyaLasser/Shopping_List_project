@@ -60,7 +60,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         RecyclerViewItem item = shoppingList.get(position);
         item.setSelected(!item.isSelected());
         checkBox.setChecked(item.isSelected());
-        DatabaseReference myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/").getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
+        DatabaseReference myRef = null;
+        if (context instanceof ShareActivity)
+            myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                    .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "-share" + "/" + item.getKey());
+        if (context instanceof MainActivity)
+            myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                    .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
         myRef.child("selected").setValue(item.isSelected());
     }
 
@@ -100,12 +106,17 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             String nameOfProduct = etDialog.getText().toString();
-                                            if(!nameOfProduct.isEmpty()) {
+                                            if (!nameOfProduct.isEmpty()) {
                                                 RecyclerViewItem item = shoppingList.get(getAdapterPosition());
-                                                DatabaseReference myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/").getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
+                                                DatabaseReference myRef = null;
+                                                if (context instanceof ShareActivity)
+                                                    myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                                                            .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "-share" + "/" + item.getKey());
+                                                else if (context instanceof MainActivity)
+                                                    myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                                                            .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
                                                 myRef.child("text").setValue(nameOfProduct);
-                                            }
-                                            else
+                                            } else
                                                 Toast.makeText(context, "write the name of the product", Toast.LENGTH_SHORT).show();
                                         }
                                     });
@@ -123,9 +134,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     RecyclerViewItem item = shoppingList.get(getAdapterPosition());
-                                    DatabaseReference myRef = FirebaseDatabase
-                                            .getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
-                                            .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
+                                    DatabaseReference myRef = null;
+                                    if (context instanceof ShareActivity)
+                                        myRef = FirebaseDatabase
+                                                .getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                                                .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "-share" + "/" + item.getKey());
+                                    else if (context instanceof MainActivity)
+                                        myRef = FirebaseDatabase
+                                                .getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                                                .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
                                     myRef.removeValue();
                                 }
                             })
@@ -138,26 +155,44 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         @Override
         public void onClick(View v) {
-            if(v == checkBox)
+            if (v == checkBox)
                 toggleSelection(getAdapterPosition(), checkBox);
-            else if(v == btnPlus){
+
+            else if (v == btnPlus) {
                 btnMinus.setEnabled(true);
                 RecyclerViewItem item = shoppingList.get(getAdapterPosition());
                 int amount = Integer.parseInt(tvAmount.getText().toString()) + 1;
                 tvAmount.setText(amount + "");
-                DatabaseReference myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/").getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
+
+                DatabaseReference myRef = null;
+                if (context instanceof ShareActivity)
+                    myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                            .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "-share" + "/" + item.getKey());
+
+                else if (context instanceof MainActivity)
+                    myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                            .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
+
                 myRef.child("amountOfProduct").setValue(amount);
-                if(amount == 999)
+                if (amount == 999)
                     btnPlus.setEnabled(false);
-            }
-            else if(v == btnMinus) {
+            } else if (v == btnMinus) {
                 btnPlus.setEnabled(true);
                 RecyclerViewItem item = shoppingList.get(getAdapterPosition());
                 int amount = Integer.parseInt(tvAmount.getText().toString()) - 1;
                 tvAmount.setText(amount + "");
-                DatabaseReference myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/").getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
+
+                DatabaseReference myRef = null;
+                if (context instanceof ShareActivity)
+                    myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                            .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "-share" + "/" + item.getKey());
+
+                else if (context instanceof MainActivity)
+                    myRef = FirebaseDatabase.getInstance("https://todo-list-d62c4-default-rtdb.firebaseio.com/")
+                            .getReference("lists/" + FirebaseAuth.getInstance().getUid() + "/" + item.getKey());
+
                 myRef.child("amountOfProduct").setValue(amount);
-                if(amount == 1)
+                if (amount == 1)
                     btnMinus.setEnabled(false);
             }
         }

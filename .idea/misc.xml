@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/achiyal/StudioProjects/Shopping_List_project/app/src/main/res/drawable-v24/share_fab.xml" value="0.335" />
+        <entry key="..\:/Users/achiyal/StudioProjects/Shopping_List_project/app/src/main/res/drawable/round_button.xml" value="0.335" />
+        <entry key="..\:/Users/achiyal/StudioProjects/Shopping_List_project/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/achiyal/StudioProjects/Shopping_List_project/app/src/main/res/layout/activity_share.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/achiyal/StudioProjects/Shopping_List_project/app/src/main/res/layout/item_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/achiyal/StudioProjects/Shopping_List_project/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/achiyal/StudioProjects/Shopping_List_project/app/src/main/res/menu/share_menu.xml" value="0.365625" />
         <entry key="..\:/Users/achiyal/StudioProjects/Todo_List_project/app/src/main/res/drawable/border.xml" value="0.196" />
         <entry key="..\:/Users/achiyal/StudioProjects/Todo_List_project/app/src/main/res/drawable/ic_delete.xml" value="0.335" />
         <entry key="..\:/Users/achiyal/StudioProjects/Todo_List_project/app/src/main/res/drawable/round_button.xml" value="0.196" />

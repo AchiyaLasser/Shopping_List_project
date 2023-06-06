@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Smart Cart</string>
+    <string name="empty_state_share">there are no products to share.</string>
 </resources>

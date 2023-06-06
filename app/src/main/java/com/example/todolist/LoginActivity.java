@@ -62,7 +62,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else if (v == btnRegister) {
             EditText etEmail = findViewById(R.id.et_email);
             EditText etPassword = findViewById(R.id.et_password);
-            if (etEmail.getText().equals("") || etPassword.getText().equals("")) {
+            if (etEmail.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty())
+                Toast.makeText(this, "please put username and password", Toast.LENGTH_SHORT).show();
+            else {
                 mAuth.createUserWithEmailAndPassword(etEmail.getText().toString(), etPassword.getText().toString())
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -73,8 +75,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     Toast.makeText(LoginActivity.this, "Register failed", Toast.LENGTH_LONG).show();
                             }
                         });
-            } else
-                Toast.makeText(this, "please put username and password", Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 }

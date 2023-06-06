@@ -9,6 +9,11 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/menu_share"
+        android:title="Share list"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/menu_notification"
         android:title="Add Notification"
         app:showAsAction="never"/>
