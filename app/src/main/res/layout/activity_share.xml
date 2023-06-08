@@ -25,17 +25,14 @@
         android:textSize="30sp"
         android:visibility="gone" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/share_fab"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="Share List"
-        android:layout_gravity="center_horizontal|bottom"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:textAppearance="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_margin="10dp"
+        android:layout_gravity="right|bottom"
+        android:src="@drawable/ic_share"
+        android:backgroundTint="#2E8BBD"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

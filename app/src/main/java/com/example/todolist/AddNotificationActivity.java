@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,7 +25,7 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class AddNotificationActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, View.OnClickListener {
+public class AddNotificationActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, View.OnClickListener, View.OnTouchListener {
 
     Button btnSetAlarm, btnTimePicker, btnDatePicker, btnCancelAlarm;
     TextView tvDate;
@@ -53,6 +54,11 @@ public class AddNotificationActivity extends AppCompatActivity implements TimePi
         btnCancelAlarm.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
         btnDatePicker.setOnClickListener(this);
+
+        btnSetAlarm.setOnTouchListener(this);
+        btnCancelAlarm.setOnTouchListener(this);
+        btnTimePicker.setOnTouchListener(this);
+        btnDatePicker.setOnTouchListener(this);
 
         c = Calendar.getInstance();
 
@@ -174,14 +180,14 @@ public class AddNotificationActivity extends AppCompatActivity implements TimePi
     private void startAlarm(Calendar c) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
 
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.cancel(pendingIntent);
     }
 
@@ -200,5 +206,63 @@ public class AddNotificationActivity extends AppCompatActivity implements TimePi
             btnCancelAlarm.setBackgroundResource(R.drawable.round_button_off);
 
         }
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+
+        if(view == btnDatePicker){
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    // Button is being touched
+                    btnDatePicker.setAlpha(0.5f); // Set alpha to 0.5 (half-transparent)
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    // Touch is released or canceled
+                    btnDatePicker.setAlpha(1.0f); // Restore original alpha (fully opaque)
+                    break;
+            }
+        }
+        else if(view == btnTimePicker){
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    // Button is being touched
+                    btnTimePicker.setAlpha(0.5f); // Set alpha to 0.5 (half-transparent)
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    // Touch is released or canceled
+                    btnTimePicker.setAlpha(1.0f); // Restore original alpha (fully opaque)
+                    break;
+            }
+        }
+        else if(view == btnSetAlarm){
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    // Button is being touched
+                    btnSetAlarm.setAlpha(0.5f); // Set alpha to 0.5 (half-transparent)
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    // Touch is released or canceled
+                    btnSetAlarm.setAlpha(1.0f); // Restore original alpha (fully opaque)
+                    break;
+            }
+        }
+        else if(view == btnCancelAlarm){
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    // Button is being touched
+                    btnCancelAlarm.setAlpha(0.5f); // Set alpha to 0.5 (half-transparent)
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    // Touch is released or canceled
+                    btnCancelAlarm.setAlpha(1.0f); // Restore original alpha (fully opaque)
+                    break;
+            }
+        }
+        return false;
     }
 }
