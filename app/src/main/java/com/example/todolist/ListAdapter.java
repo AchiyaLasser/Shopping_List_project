@@ -155,9 +155,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         @Override
         public void onClick(View v) {
-            if (v == checkBox)
+            if (v == checkBox) {
                 toggleSelection(getAdapterPosition(), checkBox);
-
+            }
             else if (v == btnPlus) {
                 btnMinus.setEnabled(true);
                 RecyclerViewItem item = shoppingList.get(getAdapterPosition());

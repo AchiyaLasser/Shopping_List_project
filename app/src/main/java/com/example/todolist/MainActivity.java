@@ -2,7 +2,6 @@ package com.example.todolist;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
@@ -13,14 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     ListAdapter adapter;
     TextView emptyState;
@@ -62,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     RecyclerViewItem currentNote = noteSnapshot.getValue(RecyclerViewItem.class);
                     shoppingList.add(currentNote);
                 }
-                adapter.notifyDataSetChanged(); // Update adapter with new data
+                adapter.notifyDataSetChanged();// Update adapter with new data
 
                 if(shoppingList.isEmpty()){
                     emptyState.setVisibility(View.VISIBLE);
@@ -79,11 +75,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         emptyState = findViewById(R.id.empty_state);
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     @Override

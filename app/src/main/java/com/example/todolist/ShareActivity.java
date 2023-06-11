@@ -259,7 +259,6 @@ public class ShareActivity extends AppCompatActivity implements View.OnTouchList
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
                                 Toast.makeText(ShareActivity.this, "Data retrieval canceled: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                                //Toast.makeText(ShareActivity.this, "Error! please provide valid Email", Toast.LENGTH_SHORT).show();
                             }
                         });
 
