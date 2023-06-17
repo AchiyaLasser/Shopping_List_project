@@ -49,6 +49,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.textView.setText(currentNote.getText());
         holder.checkBox.setChecked(currentNote.isSelected());
         holder.tvAmount.setText(currentNote.getAmountOfProduct() + "");
+
+        if (currentNote.getAmountOfProduct() == 1) {
+            holder.btnMinus.setEnabled(false);
+        } else {
+            holder.btnMinus.setEnabled(true);
+        }
     }
 
     @Override

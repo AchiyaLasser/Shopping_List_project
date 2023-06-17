@@ -282,8 +282,7 @@ public class ShareActivity extends AppCompatActivity implements View.OnTouchList
 
         // Write the shopping list items to the user's list node
         for (RecyclerViewItem item : shoppingList) {
-            String key = userListNode.push().getKey(); // Generate a new key for each item
-            userListNode.child(key).setValue(item); // Write the item to the Firebase database
+            userListNode.child(item.getKey()).setValue(item); // Write the item to the Firebase database
         }
         DatabaseReference myRef = database.getReference("lists/" + FirebaseAuth.getInstance().getUid() + "-share");
         myRef.removeValue();
